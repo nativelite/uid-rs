@@ -1,0 +1,22 @@
+[package]
+name = "uid"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.70"
+description = "Time-sortable unique identifiers (ULID + UUIDv7) using only the Rust standard library."
+license = "MIT"
+repository = "https://github.com/nativelite/uid-rs"
+keywords = ["ulid", "uuid", "uuidv7", "id", "nativelite"]
+categories = ["data-structures"]
+
+# nativelite core rule: ZERO third-party runtime dependencies. Do not add to this.
+# (The OS CSPRNG is reached through std + a tiny per-platform FFI shim, no crate.)
+[dependencies]
+
+[lib]
+name = "uid"
+path = "src/lib.rs"
+
+[[bin]]
+name = "uid"
+path = "src/main.rs"
