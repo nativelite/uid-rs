@@ -22,6 +22,10 @@ operating system CSPRNG through `std` alone:
 That is the entire "native tools" story: the OS is the dependency you already
 trust, so we call it directly instead of vendoring a supply chain.
 
+## Philosophy
+
+See [nativelite-philosophy](https://github.com/nativelite/nativelite-philosophy) for the broader engineering standards and attack surface reduction strategy behind all nativelite packages.
+
 ## Usage
 
 ```rust
