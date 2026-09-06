@@ -1,7 +1,7 @@
 //! Spec-anchored black-box tests for the public `uid` API.
 //!
-//! Correctness is checked against the canonical formats — the ULID Crockford
-//! base32 layout and the UUIDv7 bit layout from RFC 9562 — plus the
+//! Correctness is checked against the canonical formats: the ULID Crockford
+//! base32 layout and the UUIDv7 bit layout from RFC 9562, plus the
 //! monotonic-within-a-millisecond property and the CLI contract.
 
 use std::process::Command;
