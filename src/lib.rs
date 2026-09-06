@@ -1,9 +1,9 @@
-//! uid — time-sortable unique identifiers, standard library only.
+//! uid: time-sortable unique identifiers, standard library only.
 //!
 //! Two 128-bit ID formats whose lexicographic order matches creation order:
 //!
-//! * [`ulid`] — a ULID as a 26-character Crockford base32 `String`.
-//! * [`uuid7`] — a UUID version 7 (RFC 9562) as a [`Uuid`].
+//! * [`ulid`]: a ULID as a 26-character Crockford base32 `String`.
+//! * [`uuid7`]: a UUID version 7 (RFC 9562) as a [`Uuid`].
 //!
 //! Both encode a 48-bit millisecond Unix timestamp in their most significant
 //! bits, so sorting the encoded values sorts by time. Within a single
@@ -27,7 +27,7 @@
 //!
 //! # Panics
 //!
-//! ID generation panics if the OS CSPRNG cannot be read — an unrecoverable
+//! ID generation panics if the OS CSPRNG cannot be read: an unrecoverable
 //! environment failure, mirroring how the reference implementations treat it.
 
 use std::fmt;
@@ -43,7 +43,7 @@ const CROCKFORD: &[u8; 32] = b"0123456789ABCDEFGHJKMNPQRSTVWXYZ";
 const MASK48: u128 = (1 << 48) - 1;
 
 // ---------------------------------------------------------------------------
-// OS CSPRNG — the only source of randomness, via std + a per-platform shim.
+// OS CSPRNG: the only source of randomness, via std + a per-platform shim.
 // ---------------------------------------------------------------------------
 
 #[cfg(unix)]
@@ -66,7 +66,7 @@ fn fill_random(buf: &mut [u8]) {
         .expect("uid: cannot read /dev/urandom (OS CSPRNG unavailable)");
 }
 
-// RtlGenRandom, exported from advapi32 as SystemFunction036 — the Windows system
+// RtlGenRandom, exported from advapi32 as SystemFunction036: the Windows system
 // CSPRNG with no crate dependency (the same entry `getrandom` links). Returns
 // nonzero on success. Declared at module scope (idiomatic) and gated to Windows.
 #[cfg(windows)]

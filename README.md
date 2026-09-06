@@ -1,21 +1,21 @@
 # uid-rs
-Time-sortable unique identifiers — **ULID** and **UUID version 7** (RFC 9562) —
+Time-sortable unique identifiers: **ULID** and **UUID version 7** (RFC 9562),
 built entirely on the Rust standard library. **Zero dependencies.**
 
 Both formats put a 48-bit millisecond timestamp in their most significant bits,
-so **lexicographic order matches creation order** — ideal for database primary
+so **lexicographic order matches creation order**: ideal for database primary
 keys and anything you sort by time. Within a single millisecond, IDs stay
 **monotonic**: the random field is used as a counter and incremented, so two IDs
 minted in the same millisecond still order by creation.
 
 ## Why zero dependencies matters here
 
-The usual Rust stack for this is three crates — `uuid`, plus `rand` and its
-`getrandom` backend — pulled in for behavior the standard library and the OS
+The usual Rust stack for this is three crates (`uuid`, plus `rand` and its
+`getrandom` backend), pulled in for behavior the standard library and the OS
 already provide. `uid` takes none of them. Randomness comes straight from the
 operating system CSPRNG through `std` alone:
 
-- **Unix:** reads `/dev/urandom` with safe `std::fs` — no `unsafe`, no crate.
+- **Unix:** reads `/dev/urandom` with safe `std::fs`: no `unsafe`, no crate.
 - **Windows:** one small FFI call to the system RNG (`RtlGenRandom`, the
   `advapi32` export `SystemFunction036`).
 
@@ -48,7 +48,7 @@ let t  = uid::uuid7().system_time();                // std::time::SystemTime
 
 Pin the timestamp (backfills, tests) with `uid::ulid_at(ms)` / `uid::uuid7_at(ms)`.
 
-Command line — the `uid` binary:
+Command line, the `uid` binary:
 
 ```bash
 uid            # a new ULID
@@ -69,7 +69,7 @@ uid uuid7      # a new UUID version 7
 
 `Uuid` derives `Ord` on its raw big-endian bytes, so version-7 values sort by
 their embedded timestamp. ID generation **panics** if the OS CSPRNG is
-unreadable — an unrecoverable environment failure.
+unreadable: an unrecoverable environment failure.
 
 ## What's deliberately out of scope
 

@@ -10,9 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2026-08-28
 
 ### Added
-- `ulid()` / `ulid_at(ms)` — a ULID as a 26-character Crockford base32 string
+- `ulid()` / `ulid_at(ms)`: a ULID as a 26-character Crockford base32 string
   (48-bit millisecond timestamp + 80-bit monotonic randomness).
-- `uuid7()` / `uuid7_at(ms)` — a UUID version 7 (RFC 9562) as a `Uuid` value
+- `uuid7()` / `uuid7_at(ms)`: a UUID version 7 (RFC 9562) as a `Uuid` value
   (48-bit timestamp, 74 random bits acting as a monotonic in-millisecond counter).
 - `Uuid` value type: `version()`, `timestamp_ms()`, `system_time()`,
   `as_bytes()`, `from_bytes()`, and canonical hyphenated `Display`. Ordering is
@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `ulid_timestamp_ms()` / `ulid_system_time()` and the `UlidError` type for
   parsing/inspecting ULID strings.
 - Zero-dependency OS CSPRNG access: safe `std::fs` reads of `/dev/urandom` on
-  Unix, and a minimal `RtlGenRandom` FFI shim on Windows — no `rand`,
+  Unix, and a minimal `RtlGenRandom` FFI shim on Windows: no `rand`,
   `getrandom`, or `uuid` crate.
 - `uid` command-line binary: `uid [ulid|uuid7]`.
 - `unittest`-style split test suite (white-box unit tests for the Crockford
